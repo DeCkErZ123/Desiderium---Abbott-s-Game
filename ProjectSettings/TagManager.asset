@@ -10,6 +10,7 @@ TagManager:
   - visionCube
   - soundVolume
   - end
+  - Monster
   layers:
   - Default
   - TransparentFX

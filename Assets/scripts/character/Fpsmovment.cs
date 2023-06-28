@@ -73,11 +73,13 @@ public class Fpsmovment : MonoBehaviour
     {
         if (Input.GetKeyDown(m_sprint)) // if key is down, sprint
         {
+            NoiseLevelManager.running = true;
             m_finalSpeed = m_movementSpeed * m_runSpeed;
             //soundVolume.SetActive(true);
         }
         else if (Input.GetKeyUp(m_sprint)) // if key is uo, don't sprint
         {
+            NoiseLevelManager.running = false;
             m_finalSpeed = m_movementSpeed;
             //soundVolume.SetActive(false);
         }

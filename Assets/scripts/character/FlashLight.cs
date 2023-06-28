@@ -74,12 +74,12 @@ public class FlashLight : MonoBehaviour
         //recharges battery and de/activates the sound detection volume
         if (Input.GetKey(recharge))
         {
+            NoiseLevelManager.rechargingLight = true;
             Battery += batteryRecharge * Time.deltaTime;
-            soundVolume.SetActive(true);
         }
         else
         {
-            soundVolume.SetActive(false);
+            NoiseLevelManager.rechargingLight = false;
         }
         //keeps battery from going over 100%
         if (Battery > 100)

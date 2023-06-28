@@ -30,12 +30,15 @@ public class AiLocomotion : MonoBehaviour
         currentDest = destinations[randomNum];
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void NoiseHeard()
     {
-        if (other.gameObject.CompareTag("soundVolume")) 
-        {
-            chasing = true;
-        }
+        Debug.Log("Monster Reacts To Noise");
+        //chasing = true;
+        walking = false;
+        StopCoroutine("stayIdle");
+        StopCoroutine("chaseRoutine");
+        StartCoroutine("chaseRoutine");
+        chasing = true;
     }
 
     void Update()
