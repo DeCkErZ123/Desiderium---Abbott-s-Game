@@ -9,6 +9,9 @@ public class NoiseLevelManager : MonoBehaviour
     public AiLocomotion monsterManager;
     public static bool rechargingLight;
     public static bool running;
+    public GameObject noiseLevelLow;
+    public GameObject noiseLevelMid;
+    public GameObject noiseLevelHigh;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +37,24 @@ public class NoiseLevelManager : MonoBehaviour
         {
             noiseBubble.transform.localScale = new Vector3(70, 70, 70);
             noiseCollider.enabled = true;
+            noiseLevelHigh.SetActive(true);
+            noiseLevelMid.SetActive(false);
+            noiseLevelLow.SetActive(false);
         }
         else if (running || rechargingLight)
         {
             noiseBubble.transform.localScale = new Vector3(50, 50, 50);
             noiseCollider.enabled = true;
+            noiseLevelHigh.SetActive(false);
+            noiseLevelMid.SetActive(true);
+            noiseLevelLow.SetActive(false);
         }
         else
         {
             noiseCollider.enabled = false;
+            noiseLevelHigh.SetActive(false);
+            noiseLevelMid.SetActive(false);
+            noiseLevelLow.SetActive(true);
         }
     }
 }

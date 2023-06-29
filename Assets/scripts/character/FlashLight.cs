@@ -5,6 +5,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FlashLight : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public class FlashLight : MonoBehaviour
     public GameObject Monster;
     RaycastHit hit;
 
-    public Text batteryText;
+    public Slider batteryPercentageSlider;
+    public TextMeshProUGUI batteryPercentageText;
 
     private Vector3 hitDirection;
     private Vector3 Start, end;
@@ -53,7 +55,7 @@ public class FlashLight : MonoBehaviour
         //toggles the state of the flashlight
         if (Input.GetMouseButtonDown(0))
         {
-            if (lightOn == false && Battery > 0)
+            if (lightOn == false && Battery > 0 && NoiseLevelManager.rechargingLight == false)
             {
                 lightOn = true;
                 Light.SetActive(true);
@@ -74,8 +76,10 @@ public class FlashLight : MonoBehaviour
         //recharges battery and de/activates the sound detection volume
         if (Input.GetKey(recharge))
         {
-            NoiseLevelManager.rechargingLight = true;
             Battery += batteryRecharge * Time.deltaTime;
+            NoiseLevelManager.rechargingLight = true;
+            lightOn = false;
+            Light.SetActive(false);
         }
         else
         {
@@ -116,8 +120,8 @@ public class FlashLight : MonoBehaviour
         }
         //displays battery percent on screen
 
-        batteryText.text = "Battery:" + Battery + "%";
-
+        batteryPercentageText.text = ((int)Battery) + "%";
+        batteryPercentageSlider.value = (Battery) / 100;
     }
 
     private void OnTriggerEnter(Collider other)
