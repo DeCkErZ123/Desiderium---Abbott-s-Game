@@ -12,6 +12,7 @@ public class AiLocomotion : MonoBehaviour
     public bool walking, chasing;
 
     public Animator aiAnim;
+    public LayerMask ignoreLayer;
 
     public Transform playerTransform;
     public Transform lastHeardPosition;
@@ -54,7 +55,7 @@ public class AiLocomotion : MonoBehaviour
         aiDistance = (Vector3.Distance(playerTransform.position, this.transform.position));
         aiDistanceToNoise = (Vector3.Distance(lastHeardPosition.position, this.transform.position));
 
-        if (Physics.Raycast(transform.position + rayCastOffset , direction * sightDistance, out hit))
+        if (Physics.Raycast(transform.position + rayCastOffset , direction * sightDistance, out hit, ignoreLayer))
         {
             Debug.DrawRay(transform.position + rayCastOffset, direction * sightDistance);
             if (hit.collider.gameObject.tag == "Player")
