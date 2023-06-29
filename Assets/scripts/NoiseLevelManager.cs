@@ -9,6 +9,8 @@ public class NoiseLevelManager : MonoBehaviour
     public AiLocomotion monsterManager;
     public static bool rechargingLight;
     public static bool running;
+    public int noiseLevel1Radius = 50;
+    public int noiseLevel2Radius = 80;
     public GameObject noiseLevelLow;
     public GameObject noiseLevelMid;
     public GameObject noiseLevelHigh;
@@ -35,7 +37,7 @@ public class NoiseLevelManager : MonoBehaviour
     {
         if (rechargingLight && running)
         {
-            noiseBubble.transform.localScale = new Vector3(100, 100, 100);
+            noiseBubble.transform.localScale = new Vector3(noiseLevel2Radius, noiseLevel2Radius, noiseLevel2Radius);
             noiseCollider.enabled = true;
             noiseLevelHigh.SetActive(true);
             noiseLevelMid.SetActive(false);
@@ -43,7 +45,7 @@ public class NoiseLevelManager : MonoBehaviour
         }
         else if (running || rechargingLight)
         {
-            noiseBubble.transform.localScale = new Vector3(70, 70, 70);
+            noiseBubble.transform.localScale = new Vector3(noiseLevel1Radius, noiseLevel1Radius, noiseLevel1Radius);
             noiseCollider.enabled = true;
             noiseLevelHigh.SetActive(false);
             noiseLevelMid.SetActive(true);
