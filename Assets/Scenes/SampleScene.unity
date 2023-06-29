@@ -34653,7 +34653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798067282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.7, y: 2.46, z: -25.9}
+  m_LocalPosition: {x: -60.7, y: 2.46, z: -29.9}
   m_LocalScale: {x: 1.4, y: 2.3, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34720,9 +34720,9 @@ MonoBehaviour:
   maxIdletime: 5
   idleTime: 0
   catchDistance: 3
-  chaseTime: 0
-  minChaseTime: 3
-  maxChaseTime: 3
+  chaseTime: 3
+  minChaseTime: 5
+  maxChaseTime: 8.68
   jumpscareTime: 2
   sightDistance: 70
   walking: 0
@@ -34730,7 +34730,7 @@ MonoBehaviour:
   aiAnim: {fileID: 1798067289}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 38
   playerTransform: {fileID: 7147900398687477017}
   lastHeardPosition: {fileID: 1488089609}
   rayCastOffset: {x: 0, y: -0.5, z: 0}
