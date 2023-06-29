@@ -35,7 +35,7 @@ public class NoiseLevelManager : MonoBehaviour
     {
         if (rechargingLight && running)
         {
-            noiseBubble.transform.localScale = new Vector3(70, 70, 70);
+            noiseBubble.transform.localScale = new Vector3(100, 100, 100);
             noiseCollider.enabled = true;
             noiseLevelHigh.SetActive(true);
             noiseLevelMid.SetActive(false);
@@ -43,7 +43,7 @@ public class NoiseLevelManager : MonoBehaviour
         }
         else if (running || rechargingLight)
         {
-            noiseBubble.transform.localScale = new Vector3(50, 50, 50);
+            noiseBubble.transform.localScale = new Vector3(70, 70, 70);
             noiseCollider.enabled = true;
             noiseLevelHigh.SetActive(false);
             noiseLevelMid.SetActive(true);

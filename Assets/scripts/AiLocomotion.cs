@@ -14,6 +14,7 @@ public class AiLocomotion : MonoBehaviour
     public Animator aiAnim;
 
     public Transform playerTransform;
+    public Transform lastHeardPosition;
     Transform currentDest;
     Vector3 dest;
     int randomNum, randomNum2;
@@ -22,6 +23,7 @@ public class AiLocomotion : MonoBehaviour
     public string deathScene;
     public Ray ray;
     float aiDistance;
+    public float aiDistanceToNoise;
 
     private void Start()
     {
@@ -33,12 +35,14 @@ public class AiLocomotion : MonoBehaviour
     public void NoiseHeard()
     {
         Debug.Log("Monster Reacts To Noise");
-        //chasing = true;
-        walking = false;
-        StopCoroutine("stayIdle");
-        StopCoroutine("chaseRoutine");
-        StartCoroutine("chaseRoutine");
-        chasing = true;
+        
+        if (chasing == false)
+        {
+            lastHeardPosition.position = new Vector3(playerTransform.position.x, lastHeardPosition.position.y, playerTransform.position.z);
+            currentDest = lastHeardPosition;
+            currentDest.position = lastHeardPosition.position;
+            walking = true;
+        }
     }
 
     void Update()
@@ -48,6 +52,7 @@ public class AiLocomotion : MonoBehaviour
         RaycastHit hit;
 
         aiDistance = (Vector3.Distance(playerTransform.position, this.transform.position));
+        aiDistanceToNoise = (Vector3.Distance(lastHeardPosition.position, this.transform.position));
 
         if (Physics.Raycast(transform.position + rayCastOffset , direction * sightDistance, out hit))
         {
@@ -93,7 +98,7 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.ResetTrigger("idle");
             aiAnim.SetTrigger("walk");
 
-            if(ai.remainingDistance <= ai.stoppingDistance)
+            if(ai.remainingDistance <= ai.stoppingDistance || currentDest == lastHeardPosition && aiDistanceToNoise <= 2)
             {
                 randomNum2 = Random.Range (0,2);
                 if (randomNum2 == 0)
