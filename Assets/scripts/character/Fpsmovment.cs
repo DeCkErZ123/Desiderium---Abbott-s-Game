@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -26,6 +27,10 @@ public class Fpsmovment : MonoBehaviour
     public LayerMask m_groundMask;
     private bool m_isGrounded;
 
+    public GameObject smallMazeZone;
+    public GameObject smallMazeZone2;
+    public static bool inSmallMaze;
+
     //public GameObject soundVolume;
    
 
@@ -36,7 +41,21 @@ public class Fpsmovment : MonoBehaviour
         m_isGrounded = HitGroundCheck();
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject == smallMazeZone || other.gameObject == smallMazeZone2)
+        {
+            inSmallMaze = true;
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == smallMazeZone)
+        {
+            inSmallMaze = false;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

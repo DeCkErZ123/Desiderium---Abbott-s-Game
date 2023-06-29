@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class AiLocomotion : MonoBehaviour
 {
     public NavMeshAgent ai;
-    public List<Transform> destinations;
+    public List<Transform> smallMazeDestinations;
+    public List<Transform> largeMazeDestinations;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdletime, idleTime, catchDistance, chaseTime, minChaseTime, maxChaseTime, jumpscareTime, sightDistance;
     public bool walking, chasing;
 
@@ -30,8 +31,9 @@ public class AiLocomotion : MonoBehaviour
     private void Start()
     {
         walking = true;
-        randomNum = Random.Range (0,destinations.Count);
-        currentDest = destinations[randomNum];
+        randomNum = Random.Range(0, smallMazeDestinations.Count);
+        currentDest = smallMazeDestinations[randomNum];
+
     }
 
     public void NoiseHeard()
@@ -105,8 +107,16 @@ public class AiLocomotion : MonoBehaviour
                 randomNum2 = Random.Range (0,2);
                 if (randomNum2 == 0)
                 {
-                    randomNum = Random.Range(0, destinations.Count);
-                    currentDest = destinations[randomNum];
+                    if (Fpsmovment.inSmallMaze == true)
+                    {
+                        randomNum = Random.Range(0, smallMazeDestinations.Count);
+                        currentDest = smallMazeDestinations[randomNum];
+                    }
+                    else
+                    {
+                        randomNum = Random.Range(0, largeMazeDestinations.Count);
+                        currentDest = largeMazeDestinations[randomNum];
+                    }
                 }
                 if(randomNum2 == 1)
                 {
@@ -126,8 +136,16 @@ public class AiLocomotion : MonoBehaviour
         idleTime = Random.Range (minIdleTime, maxIdletime);
         yield return new WaitForSeconds (idleTime);
         walking = true;
-        randomNum = Random.Range(0, destinations.Count);
-        currentDest = destinations[randomNum];
+        if (Fpsmovment.inSmallMaze == true)
+        {
+            randomNum = Random.Range(0, smallMazeDestinations.Count);
+            currentDest = smallMazeDestinations[randomNum];
+        }
+        else
+        {
+            randomNum = Random.Range(0, largeMazeDestinations.Count);
+            currentDest = largeMazeDestinations[randomNum];
+        }
     }
     IEnumerator chaseRoutine()
     {
@@ -135,8 +153,16 @@ public class AiLocomotion : MonoBehaviour
         yield return new WaitForSeconds (chaseTime);
         walking = true;
         chasing = false;
-        randomNum = Random.Range(0, destinations.Count);
-        currentDest = destinations[randomNum];
+        if (Fpsmovment.inSmallMaze == true)
+        {
+            randomNum = Random.Range(0, smallMazeDestinations.Count);
+            currentDest = smallMazeDestinations[randomNum];
+        }
+        else
+        {
+            randomNum = Random.Range(0, largeMazeDestinations.Count);
+            currentDest = largeMazeDestinations[randomNum];
+        }
         aiAnim.ResetTrigger("sprint");
         aiAnim.SetTrigger("walk");
     }
