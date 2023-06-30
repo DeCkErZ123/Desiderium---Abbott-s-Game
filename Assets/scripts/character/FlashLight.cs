@@ -57,15 +57,16 @@ public class FlashLight : MonoBehaviour
         {
             if (lightOn == false && Battery > 0 && NoiseLevelManager.rechargingLight == false)
             {
+                FindObjectOfType<AudioManager>().PlaySound("Flashlight On");
                 lightOn = true;
                 Light.SetActive(true);
                
             }
             else if (lightOn == true && Battery > 0)
             {
+                FindObjectOfType<AudioManager>().PlaySound("Flashlight Off");
                 lightOn = false;
                 Light.SetActive(false);
-               
             }
         }
         //drains battery
