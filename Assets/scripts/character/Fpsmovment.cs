@@ -31,14 +31,16 @@ public class Fpsmovment : MonoBehaviour
     public GameObject smallMazeZone2;
     public static bool inSmallMaze;
 
+    private bool walkingFootsteps;
     //public GameObject soundVolume;
-   
+
 
 
     private void Awake()
     {
         m_finalSpeed = m_movementSpeed;
         m_isGrounded = HitGroundCheck();
+        walkingFootsteps = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -73,7 +75,17 @@ public class Fpsmovment : MonoBehaviour
         {
             move = transform.right * x + transform.forward * z; // calculate the move vector (direction)          
         }
+        else
+        {
+            FindObjectOfType<AudioManager>().StopSound("Player Walk");
+            walkingFootsteps = false;
+        }
 
+        if (NoiseLevelManager.running == false && walkingFootsteps == false)
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Player Walk");
+            walkingFootsteps=true;
+        }
         MovePlayer(move); // Run the MovePlayer function with the vector3 value move
         RunCheck(); // Checks the input for run
         JumpCheck(); // Checks if we can jump
@@ -82,7 +94,7 @@ public class Fpsmovment : MonoBehaviour
     void MovePlayer(Vector3 move)
     {
         m_charControler.Move(move * m_finalSpeed * Time.deltaTime); // Moves the Gameobject using the Character Controller
-
+        
         m_velocity.y += m_gravity * Time.deltaTime; // Gravity affects the jump velocity
         m_charControler.Move(m_velocity * Time.deltaTime); //Actually move the player up
 

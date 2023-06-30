@@ -28,12 +28,14 @@ public class AiLocomotion : MonoBehaviour
     float aiDistance;
     public float aiDistanceToNoise;
 
+    private bool walkingFootsteps;
+
     private void Start()
     {
         walking = true;
         randomNum = Random.Range(0, smallMazeDestinations.Count);
         currentDest = smallMazeDestinations[randomNum];
-
+        walkingFootsteps = false;
     }
 
     public void NoiseHeard()
@@ -81,6 +83,8 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.ResetTrigger("walk");
             aiAnim.ResetTrigger("idle");
             aiAnim.SetTrigger("sprint");
+            FindObjectOfType<AudioManager>().StopSound("Monster Walk");
+            walkingFootsteps = false;
             if (aiDistance <= catchDistance)
             {
                 playerTransform.gameObject.SetActive(false);
@@ -101,8 +105,13 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.ResetTrigger("sprint");
             aiAnim.ResetTrigger("idle");
             aiAnim.SetTrigger("walk");
+            if (walkingFootsteps == false)
+            {
+                FindObjectOfType<AudioManager>().PlaySound("Monster Walk");
+                walkingFootsteps=true;
+            }
 
-            if(ai.remainingDistance <= ai.stoppingDistance || currentDest == lastHeardPosition && aiDistanceToNoise <= 2)
+            if (ai.remainingDistance <= ai.stoppingDistance || currentDest == lastHeardPosition && aiDistanceToNoise <= 2)
             {
                 randomNum2 = Random.Range (0,2);
                 if (randomNum2 == 0)
@@ -127,6 +136,8 @@ public class AiLocomotion : MonoBehaviour
                     StopCoroutine("stayIdle");
                     StartCoroutine("stayIdle");
                     walking = false;
+                    FindObjectOfType<AudioManager>().StopSound("Monster Walk");
+                    walkingFootsteps = false;
                 }
             }
         }

@@ -18,6 +18,10 @@ public class AudioManager : MonoBehaviour
             s.audioSource.pitch = s.pitch;
             s.audioSource.panStereo = s.stereoPan;
             s.audioSource.spatialBlend = s.spacialBlend;
+            s.audioSource.spread = s.spread;
+            s.audioSource.rolloffMode = s.rolloffMode;
+            s.audioSource.minDistance = s.minDistance;
+            s.audioSource.maxDistance = s.maxDistance;
         }
     }
 
@@ -25,5 +29,11 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = sounds.Find(Sound => Sound.name == name);
         s.audioSource.Play();
+    }
+
+    public void StopSound(string name)
+    {
+        Sound s = sounds.Find(Sound => Sound.name == name);
+        s.audioSource.Stop();
     }
 }
