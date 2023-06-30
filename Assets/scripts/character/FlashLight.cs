@@ -27,6 +27,7 @@ public class FlashLight : MonoBehaviour
     public GameObject flashlight;
     public GameObject visionCube;
     public GameObject Monster;
+    public Collider flashlightCollider;
     RaycastHit hit;
 
     public Slider batteryPercentageSlider;
@@ -50,6 +51,8 @@ public class FlashLight : MonoBehaviour
         {
             lightOn = false;
             Light.SetActive(false);
+            flashlightCollider.enabled = false;
+            //MonsterFlashed.monsterFlashed = false;
             Battery = 0;
         }
         //toggles the state of the flashlight
@@ -60,6 +63,7 @@ public class FlashLight : MonoBehaviour
                 FindObjectOfType<AudioManager>().PlaySound("Flashlight On");
                 lightOn = true;
                 Light.SetActive(true);
+                flashlightCollider.enabled = true;
                
             }
             else if (lightOn == true && Battery > 0)
@@ -67,6 +71,8 @@ public class FlashLight : MonoBehaviour
                 FindObjectOfType<AudioManager>().PlaySound("Flashlight Off");
                 lightOn = false;
                 Light.SetActive(false);
+                flashlightCollider.enabled = false;
+                //MonsterFlashed.monsterFlashed = false;
             }
         }
         //drains battery
@@ -81,6 +87,8 @@ public class FlashLight : MonoBehaviour
             NoiseLevelManager.rechargingLight = true;
             lightOn = false;
             Light.SetActive(false);
+            flashlightCollider.enabled = false;
+            //MonsterFlashed.monsterFlashed = false;
         }
         else
         {

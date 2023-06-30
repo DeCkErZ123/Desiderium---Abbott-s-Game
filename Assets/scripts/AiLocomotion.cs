@@ -63,7 +63,7 @@ public class AiLocomotion : MonoBehaviour
         if (Physics.Raycast(transform.position + rayCastOffset , direction * sightDistance, out hit, ignoreLayer ))
         {
             Debug.DrawRay(transform.position + rayCastOffset, direction * sightDistance);
-            if (hit.collider.gameObject.tag == "Player")
+            if (hit.collider.gameObject.tag == "Player" && MonsterSightline.playerInView == true || hit.collider.gameObject.tag == "Player" && MonsterFlashed.monsterFlashed == true)
             {
                 walking = false;
                 StopCoroutine("stayIdle");
