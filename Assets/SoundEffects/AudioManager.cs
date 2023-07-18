@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
             s.audioSource = s.source.AddComponent<AudioSource>();
             s.audioSource.clip = s.clip;
 
+            s.audioSource.loop = s.loop;
             s.audioSource.volume = s.volume;
             s.audioSource.pitch = s.pitch;
             s.audioSource.panStereo = s.stereoPan;
