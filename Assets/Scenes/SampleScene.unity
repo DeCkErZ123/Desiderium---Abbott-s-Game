@@ -3537,6 +3537,19 @@ MonoBehaviour:
     maxDistance: 70
     source: {fileID: 402708758}
     audioSource: {fileID: 0}
+  - name: Flashlight Crank
+    clip: {fileID: 8300000, guid: 9e1bebdc942155c45aa1201b5df588f5, type: 3}
+    loop: 1
+    volume: 1
+    pitch: 0.9
+    stereoPan: 0
+    spacialBlend: 0.75
+    spread: 0
+    rolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 1626928373}
+    audioSource: {fileID: 0}
   - name: Temp
     clip: {fileID: 8300000, guid: f0d7de20d16dcfd469d73b7ce7fbd268, type: 3}
     loop: 0
@@ -43950,6 +43963,7 @@ MonoBehaviour:
   flashlightCollider: {fileID: 149739036}
   batteryPercentageSlider: {fileID: 1287609129}
   batteryPercentageText: {fileID: 814606857}
+  recharging: 0
 --- !u!1 &7147900398959632618
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,6 +36,8 @@ public class FlashLight : MonoBehaviour
     private Vector3 hitDirection;
     private Vector3 Start, end;
 
+    public bool recharging;
+
     // Update is called once per frame
     void Update()
     {
@@ -83,6 +85,11 @@ public class FlashLight : MonoBehaviour
         //recharges battery and de/activates the sound detection volume
         if (Input.GetKey(recharge))
         {
+            if (recharging == false)
+            {
+                FindObjectOfType<AudioManager>().PlaySound("Flashlight Crank");
+                recharging = true;
+            }
             Battery += batteryRecharge * Time.deltaTime;
             NoiseLevelManager.rechargingLight = true;
             lightOn = false;
@@ -92,7 +99,9 @@ public class FlashLight : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<AudioManager>().StopSound("Flashlight Crank");
             NoiseLevelManager.rechargingLight = false;
+            recharging = false;
         }
         //keeps battery from going over 100%
         if (Battery > 100)
