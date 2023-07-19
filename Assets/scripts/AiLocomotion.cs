@@ -29,6 +29,7 @@ public class AiLocomotion : MonoBehaviour
     public float aiDistanceToNoise;
 
     private bool walkingFootsteps;
+    private bool chasingFootsteps;
 
     private void Start()
     {
@@ -83,8 +84,13 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.ResetTrigger("walk");
             aiAnim.ResetTrigger("idle");
             aiAnim.SetTrigger("sprint");
-            FindObjectOfType<AudioManager>().StopSound("Monster Walk");
             walkingFootsteps = false;
+            FindObjectOfType<AudioManager>().StopSound("Monster Walk");
+            if (chasingFootsteps == false)
+            {
+                FindObjectOfType<AudioManager>().PlaySound("Monster Run");
+                chasingFootsteps = true;
+            }
             if (aiDistance <= catchDistance)
             {
                 playerTransform.gameObject.SetActive(false);
@@ -105,6 +111,8 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.ResetTrigger("sprint");
             aiAnim.ResetTrigger("idle");
             aiAnim.SetTrigger("walk");
+            chasingFootsteps = false;
+            FindObjectOfType<AudioManager>().StopSound("Monster Run");
             if (walkingFootsteps == false)
             {
                 FindObjectOfType<AudioManager>().PlaySound("Monster Walk");
