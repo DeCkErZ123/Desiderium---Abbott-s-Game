@@ -32,6 +32,8 @@ public class AiLocomotion : MonoBehaviour
     private bool walkingFootsteps;
     private bool chasingFootsteps;
 
+    private bool roarReady = true;
+
     public GameObject deathPannel;
     private void Start()
     {
@@ -47,6 +49,14 @@ public class AiLocomotion : MonoBehaviour
         
         if (chasing == false)
         {
+            if (roarReady == true)
+            {
+                roarReady = false;
+                FindObjectOfType<AudioManager>().StopSound("Monster Ambient1");
+                FindObjectOfType<AudioManager>().StopSound("Monster Ambient2");
+                FindObjectOfType<AudioManager>().PlaySound("Monster Alert");
+                StartCoroutine(RoarCooldown());
+            }
             lastHeardPosition.position = new Vector3(playerTransform.position.x, lastHeardPosition.position.y, playerTransform.position.z);
             currentDest = lastHeardPosition;
             currentDest.position = lastHeardPosition.position;
@@ -201,5 +211,11 @@ public class AiLocomotion : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(deathScene);
+    }
+
+    IEnumerator RoarCooldown()
+    {
+        yield return new WaitForSeconds(20);
+        roarReady = true;
     }
 }
