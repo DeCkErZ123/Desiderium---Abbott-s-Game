@@ -3509,7 +3509,33 @@ MonoBehaviour:
     rolloffMode: 0
     minDistance: 1
     maxDistance: 500
-    source: {fileID: 389385220}
+    source: {fileID: 402708758}
+    audioSource: {fileID: 0}
+  - name: Monster Ambient1
+    clip: {fileID: 8300000, guid: 41606ddaf2fc445418fd26626d15f885, type: 3}
+    loop: 0
+    volume: 0.75
+    pitch: 1
+    stereoPan: 0
+    spacialBlend: 1
+    spread: 0
+    rolloffMode: 0
+    minDistance: 10
+    maxDistance: 70
+    source: {fileID: 402708758}
+    audioSource: {fileID: 0}
+  - name: Monster Ambient2
+    clip: {fileID: 8300000, guid: 74fc2b333b1f3a24484289c83f2224fc, type: 3}
+    loop: 0
+    volume: 0.75
+    pitch: 1
+    stereoPan: 0
+    spacialBlend: 1
+    spread: 0
+    rolloffMode: 0
+    minDistance: 10
+    maxDistance: 70
+    source: {fileID: 402708758}
     audioSource: {fileID: 0}
   - name: Temp
     clip: {fileID: 8300000, guid: f0d7de20d16dcfd469d73b7ce7fbd268, type: 3}
@@ -8061,6 +8087,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400662829}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &402708758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402708759}
+  m_Layer: 0
+  m_Name: Monster Head Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402708759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402708758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.714, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1798067286}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &407964412
 GameObject:
   m_ObjectHideFlags: 0
@@ -35844,6 +35901,7 @@ GameObject:
   - component: {fileID: 1798067287}
   - component: {fileID: 1798067288}
   - component: {fileID: 1798067289}
+  - component: {fileID: 1798067290}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Monster
@@ -35934,6 +35992,7 @@ Transform:
   - {fileID: 389385221}
   - {fileID: 1016342248}
   - {fileID: 22067803}
+  - {fileID: 402708759}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36053,6 +36112,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1798067290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798067282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d219932faf2fc647a4f07ba436e5512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AiLocomotion: {fileID: 1798067287}
+  waiting: 0
+  lastSound: 0
+  randomNum: 0
 --- !u!1 &1799512555
 GameObject:
   m_ObjectHideFlags: 0
