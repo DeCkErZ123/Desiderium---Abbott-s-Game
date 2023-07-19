@@ -3473,7 +3473,7 @@ MonoBehaviour:
     source: {fileID: 1147244912}
     audioSource: {fileID: 0}
   - name: Monster Walk
-    clip: {fileID: 8300000, guid: bdb1106e5581b9b449b76e87aa138368, type: 3}
+    clip: {fileID: 8300000, guid: ad22d8a73edff5d4da618d998b1ab762, type: 3}
     loop: 1
     volume: 1
     pitch: 1
@@ -3496,6 +3496,19 @@ MonoBehaviour:
     rolloffMode: 0
     minDistance: 10
     maxDistance: 150
+    source: {fileID: 389385220}
+    audioSource: {fileID: 0}
+  - name: Death Noise
+    clip: {fileID: 8300000, guid: 7f85ec6ea7ad6604b804f4c2180b3bb9, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
+    stereoPan: 0
+    spacialBlend: 0
+    spread: 0
+    rolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
     source: {fileID: 389385220}
     audioSource: {fileID: 0}
   - name: Temp
@@ -10775,6 +10788,7 @@ RectTransform:
   - {fileID: 1114952322}
   - {fileID: 1287609128}
   - {fileID: 418830844}
+  - {fileID: 1893833225}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35982,7 +35996,7 @@ MonoBehaviour:
   chaseTime: 3
   minChaseTime: 5
   maxChaseTime: 8.68
-  jumpscareTime: 2
+  jumpscareTime: 1
   sightDistance: 70
   walking: 0
   chasing: 0
@@ -35996,6 +36010,7 @@ MonoBehaviour:
   rayCastTargetOffset: {x: 0, y: 1, z: 0}
   deathScene: SampleScene
   aiDistanceToNoise: 0
+  deathPannel: {fileID: 1893833222}
 --- !u!195 &1798067288
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -38100,6 +38115,82 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889971375}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1893833222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1893833225}
+  - component: {fileID: 1893833224}
+  - component: {fileID: 1893833223}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1893833223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893833222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1893833224
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893833222}
+  m_CullTransparentMesh: 1
+--- !u!224 &1893833225
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893833222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0177, y: 1.0177, z: 1.0177}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 488378103}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1905967959
 GameObject:
   m_ObjectHideFlags: 0

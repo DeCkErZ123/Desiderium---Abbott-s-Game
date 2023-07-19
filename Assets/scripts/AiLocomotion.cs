@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AiLocomotion : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class AiLocomotion : MonoBehaviour
     private bool walkingFootsteps;
     private bool chasingFootsteps;
 
+    public GameObject deathPannel;
     private void Start()
     {
         walking = true;
@@ -187,7 +189,17 @@ public class AiLocomotion : MonoBehaviour
     }
     IEnumerator deathRoutine()
     {
+        FindObjectOfType<AudioManager>().StopSound("Monster Walk");
+        FindObjectOfType<AudioManager>().StopSound("Monster Run");
+        FindObjectOfType<AudioManager>().PlaySound("Death Noise");
         yield return new WaitForSeconds(jumpscareTime);
+        for (float i = 0; i <= 1; i += Time.deltaTime)
+        {
+            // set color with i as alpha
+            deathPannel.GetComponent<Image>().color = new Color(0, 0, 0, i);
+            yield return null;
+        }
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(deathScene);
     }
 }
