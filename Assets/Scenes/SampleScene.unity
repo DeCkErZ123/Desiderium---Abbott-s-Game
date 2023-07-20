@@ -9121,9 +9121,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 33.4
-  m_Height: 119.336975
+  m_Height: 143.95361
   m_Direction: 1
-  m_Center: {x: 0, y: 58.12802, z: 0.00005905054}
+  m_Center: {x: 0, y: 70.43648, z: 0.00007155434}
 --- !u!23 &420673632
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37356,7 +37356,7 @@ MonoBehaviour:
   minChaseTime: 5
   maxChaseTime: 8.68
   jumpscareTime: 1
-  sightDistance: 100
+  sightDistance: 120
   walking: 0
   chasing: 0
   aiAnim: {fileID: 1798067289}
@@ -45527,7 +45527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recharge: 32
-  lightOn: 0
+  lightOn: 1
   Battery: 100
   amount: 1
   displayBattery: 0

@@ -92,11 +92,13 @@ public class Fpsmovment : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().PlaySound("Player Walk");
             walkingFootsteps=true;
+            runningFootsteps = false;
         }
         else if (NoiseLevelManager.running == true && runningFootsteps == false)
         {
             FindObjectOfType<AudioManager>().PlaySound("Player Run");
             runningFootsteps=true;
+            walkingFootsteps=false;
         }
         MovePlayer(move); // Run the MovePlayer function with the vector3 value move
         RunCheck(); // Checks the input for run
