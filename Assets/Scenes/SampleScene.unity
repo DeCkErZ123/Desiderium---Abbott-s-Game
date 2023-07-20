@@ -37354,9 +37354,9 @@ MonoBehaviour:
   catchDistance: 3
   chaseTime: 3
   minChaseTime: 5
-  maxChaseTime: 8.68
+  maxChaseTime: 6
   jumpscareTime: 1
-  sightDistance: 120
+  sightDistance: 100
   walking: 0
   chasing: 0
   aiAnim: {fileID: 1798067289}
@@ -37370,6 +37370,7 @@ MonoBehaviour:
   deathScene: SampleScene
   aiDistanceToNoise: 0
   deathPannel: {fileID: 1893833222}
+  chaseMusic: {fileID: 0}
 --- !u!195 &1798067288
 NavMeshAgent:
   m_ObjectHideFlags: 0

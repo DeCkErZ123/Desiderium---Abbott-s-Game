@@ -32,7 +32,7 @@ public class MonsterRandomSounds : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(7, 13));
         if (AiLocomotion.chasing == false)
         {
-            randomNum = Random.Range(1, 3);
+            randomNum = Random.Range(1, 4);
             while (randomNum == lastSound)
             {
                 randomNum = Random.Range(1, 4);

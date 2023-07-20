@@ -36,12 +36,14 @@ public class AiLocomotion : MonoBehaviour
     private bool roarReady = true;
 
     public GameObject deathPannel;
+    public AudioSource chaseMusic;
     private void Start()
     {
         walking = true;
         randomNum = Random.Range(0, smallMazeDestinations.Count);
         currentDest = smallMazeDestinations[randomNum];
         walkingFootsteps = false;
+        chaseMusic = FindObjectOfType<AudioManager>().GetAudioManager("Monster Chase Music");
     }
 
     public void NoiseHeard()
@@ -104,12 +106,14 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.SetTrigger("sprint");
             walkingFootsteps = false;
             FindObjectOfType<AudioManager>().StopSound("Monster Walk");
+            chaseMusic.volume = 1;
             if (chasingFootsteps == false)
             {
                 FindObjectOfType<AudioManager>().PlaySound("Monster Scream");
                 StartCoroutine(MusicDelay());
                 FindObjectOfType<AudioManager>().PlaySound("Monster Run");
                 chasingFootsteps = true;
+                chaseMusicPlaying = true;
             }
             if (aiDistance <= catchDistance)
             {
@@ -133,7 +137,12 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.SetTrigger("walk");
             chasingFootsteps = false;
             FindObjectOfType<AudioManager>().StopSound("Monster Run");
-            FindObjectOfType<AudioManager>().StopSound("Monster Chase Music");
+            if (chaseMusicPlaying == true)
+            {
+                StartCoroutine(FadeAudioSource.StartFade(chaseMusic, 1.5f, 0));
+                StartCoroutine(MusicOff());
+                chaseMusicPlaying =false;
+            }
             if (walkingFootsteps == false)
             {
                 FindObjectOfType<AudioManager>().PlaySound("Monster Walk");
@@ -233,5 +242,11 @@ public class AiLocomotion : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         FindObjectOfType<AudioManager>().PlaySound("Monster Chase Music");
+    }
+
+    IEnumerator MusicOff()
+    {
+        yield return new WaitForSeconds(1.5f);
+        FindObjectOfType<AudioManager>().StopSound("Monster Chase Music");
     }
 }

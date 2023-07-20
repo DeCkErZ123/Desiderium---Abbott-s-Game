@@ -37,4 +37,10 @@ public class AudioManager : MonoBehaviour
         Sound s = sounds.Find(Sound => Sound.name == name);
         s.audioSource.Stop();
     }
+
+    public AudioSource GetAudioManager(string name)
+    {
+        Sound s = sounds.Find(Sound => Sound.name == name);
+        return s.audioSource;
+    }
 }
