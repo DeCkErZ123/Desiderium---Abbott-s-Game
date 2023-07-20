@@ -32,6 +32,10 @@ public class Fpsmovment : MonoBehaviour
     public static bool inSmallMaze;
 
     private bool walkingFootsteps;
+
+    public float startTime;
+    public float runningTime;
+    public bool exhausted;
     //public GameObject soundVolume;
 
 
@@ -104,12 +108,25 @@ public class Fpsmovment : MonoBehaviour
     {
         if (Input.GetKeyDown(m_sprint)) // if key is down, sprint
         {
+            startTime = Time.time;
             NoiseLevelManager.running = true;
             m_finalSpeed = m_movementSpeed * m_runSpeed;
             //soundVolume.SetActive(true);
         }
-        else if (Input.GetKeyUp(m_sprint)) // if key is uo, don't sprint
+        if (Input.GetKey(m_sprint))
         {
+            if (Time.time - startTime >= 6)
+            {
+                exhausted = true;
+            }
+        }
+        if (Input.GetKeyUp(m_sprint)) // if key is up, don't sprint
+        {
+            if (exhausted)
+            {
+                exhausted=false;
+                FindObjectOfType<AudioManager>().PlaySound("Player Exhausted");
+            }
             NoiseLevelManager.running = false;
             m_finalSpeed = m_movementSpeed;
             //soundVolume.SetActive(false);

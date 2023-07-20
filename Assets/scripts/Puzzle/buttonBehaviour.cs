@@ -42,7 +42,7 @@ public class buttonBehaviour : MonoBehaviour
         if (playerInZone && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("works fine");
-            
+            this.GetComponent<AudioSource>().Play();
             foreach (GameObject Light in Lights)
             {
                 Light.SetActive(!Light.activeSelf);
