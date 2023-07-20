@@ -31,6 +31,7 @@ public class AiLocomotion : MonoBehaviour
 
     private bool walkingFootsteps;
     private bool chasingFootsteps;
+    private bool chaseMusicPlaying;
 
     private bool roarReady = true;
 
@@ -78,6 +79,10 @@ public class AiLocomotion : MonoBehaviour
             Debug.DrawRay(transform.position + rayCastOffset, direction * sightDistance);
             if (hit.collider.gameObject.tag == "Player" && MonsterSightline.playerInView == true || hit.collider.gameObject.tag == "Player" && MonsterFlashed.monsterFlashed == true)
             {
+                if (chasing == false)
+                {
+                    Debug.Log("Chase Start");
+                }
                 walking = false;
                 StopCoroutine("stayIdle");
                 StopCoroutine("chaseRoutine");
@@ -100,6 +105,8 @@ public class AiLocomotion : MonoBehaviour
             FindObjectOfType<AudioManager>().StopSound("Monster Walk");
             if (chasingFootsteps == false)
             {
+                //FindObjectOfType<AudioManager>().PlaySound("Monster Sees You");
+                StartCoroutine(MusicDelay());
                 FindObjectOfType<AudioManager>().PlaySound("Monster Run");
                 chasingFootsteps = true;
             }
@@ -125,6 +132,7 @@ public class AiLocomotion : MonoBehaviour
             aiAnim.SetTrigger("walk");
             chasingFootsteps = false;
             FindObjectOfType<AudioManager>().StopSound("Monster Run");
+            FindObjectOfType<AudioManager>().StopSound("Monster Chase Music");
             if (walkingFootsteps == false)
             {
                 FindObjectOfType<AudioManager>().PlaySound("Monster Walk");
@@ -199,6 +207,7 @@ public class AiLocomotion : MonoBehaviour
     }
     IEnumerator deathRoutine()
     {
+        FindObjectOfType<AudioManager>().StopSound("Monster Chase Music");
         FindObjectOfType<AudioManager>().StopSound("Monster Walk");
         FindObjectOfType<AudioManager>().StopSound("Monster Run");
         FindObjectOfType<AudioManager>().PlaySound("Death Noise");
@@ -217,5 +226,11 @@ public class AiLocomotion : MonoBehaviour
     {
         yield return new WaitForSeconds(20);
         roarReady = true;
+    }
+
+    IEnumerator MusicDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        FindObjectOfType<AudioManager>().PlaySound("Monster Chase Music");
     }
 }
