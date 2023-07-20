@@ -35,7 +35,7 @@ public class MonsterRandomSounds : MonoBehaviour
             randomNum = Random.Range(1, 3);
             while (randomNum == lastSound)
             {
-                randomNum = Random.Range(1, 3);
+                randomNum = Random.Range(1, 4);
             }
             lastSound = randomNum;
             switch (randomNum)
@@ -46,6 +46,9 @@ public class MonsterRandomSounds : MonoBehaviour
                 case 2:
                     FindObjectOfType<AudioManager>().PlaySound("Monster Ambient2");
                 break ;
+                case 3:
+                    FindObjectOfType<AudioManager>().PlaySound("Monster Ambient3");
+                break;
             }
                 
         }

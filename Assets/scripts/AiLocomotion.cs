@@ -55,6 +55,7 @@ public class AiLocomotion : MonoBehaviour
                 roarReady = false;
                 FindObjectOfType<AudioManager>().StopSound("Monster Ambient1");
                 FindObjectOfType<AudioManager>().StopSound("Monster Ambient2");
+                FindObjectOfType<AudioManager>().StopSound("Monster Ambient3");
                 FindObjectOfType<AudioManager>().PlaySound("Monster Alert");
                 StartCoroutine(RoarCooldown());
             }
@@ -105,7 +106,7 @@ public class AiLocomotion : MonoBehaviour
             FindObjectOfType<AudioManager>().StopSound("Monster Walk");
             if (chasingFootsteps == false)
             {
-                //FindObjectOfType<AudioManager>().PlaySound("Monster Sees You");
+                FindObjectOfType<AudioManager>().PlaySound("Monster Scream");
                 StartCoroutine(MusicDelay());
                 FindObjectOfType<AudioManager>().PlaySound("Monster Run");
                 chasingFootsteps = true;
@@ -230,7 +231,7 @@ public class AiLocomotion : MonoBehaviour
 
     IEnumerator MusicDelay()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         FindObjectOfType<AudioManager>().PlaySound("Monster Chase Music");
     }
 }

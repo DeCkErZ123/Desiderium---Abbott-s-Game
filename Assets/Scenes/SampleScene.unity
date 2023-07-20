@@ -3461,7 +3461,7 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - name: Player Walk
     clip: {fileID: 8300000, guid: 9865afacbef8708419ee7181c597f46c, type: 3}
-    loop: 0
+    loop: 1
     volume: 0.242
     pitch: 1
     stereoPan: 0
@@ -3488,7 +3488,7 @@ MonoBehaviour:
   - name: Monster Run
     clip: {fileID: 8300000, guid: 4bdc0c2a5fcd16d479d93f0b1ea319ad, type: 3}
     loop: 1
-    volume: 0.54
+    volume: 0.798
     pitch: 1
     stereoPan: 0
     spacialBlend: 1
@@ -3589,18 +3589,44 @@ MonoBehaviour:
     maxDistance: 500
     source: {fileID: 182039260}
     audioSource: {fileID: 0}
-  - name: Temp
-    clip: {fileID: 8300000, guid: f0d7de20d16dcfd469d73b7ce7fbd268, type: 3}
+  - name: Monster Scream
+    clip: {fileID: 8300000, guid: 40132c9e6a2e7dd4aafa85bbd70a2904, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     stereoPan: 0
-    spacialBlend: 0
+    spacialBlend: 1
+    spread: 0
+    rolloffMode: 0
+    minDistance: 10
+    maxDistance: 70
+    source: {fileID: 402708758}
+    audioSource: {fileID: 0}
+  - name: Monster Ambient3
+    clip: {fileID: 8300000, guid: 564bd9557a3872548b1d38583f4aefda, type: 3}
+    loop: 0
+    volume: 0.75
+    pitch: 1
+    stereoPan: 0
+    spacialBlend: 1
+    spread: 0
+    rolloffMode: 0
+    minDistance: 10
+    maxDistance: 70
+    source: {fileID: 402708758}
+    audioSource: {fileID: 0}
+  - name: Player Run
+    clip: {fileID: 8300000, guid: de0f3ac080b91524e9d443de37254fce, type: 3}
+    loop: 1
+    volume: 0.42
+    pitch: 1
+    stereoPan: 0
+    spacialBlend: 1
     spread: 0
     rolloffMode: 0
     minDistance: 1
     maxDistance: 500
-    source: {fileID: 182039260}
+    source: {fileID: 1147244912}
     audioSource: {fileID: 0}
   - name: Temp
     clip: {fileID: 8300000, guid: f0d7de20d16dcfd469d73b7ce7fbd268, type: 3}
@@ -45501,7 +45527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recharge: 32
-  lightOn: 1
+  lightOn: 0
   Battery: 100
   amount: 1
   displayBattery: 0

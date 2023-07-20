@@ -32,6 +32,7 @@ public class Fpsmovment : MonoBehaviour
     public static bool inSmallMaze;
 
     private bool walkingFootsteps;
+    private bool runningFootsteps;
 
     public float startTime;
     public float runningTime;
@@ -82,13 +83,20 @@ public class Fpsmovment : MonoBehaviour
         else
         {
             FindObjectOfType<AudioManager>().StopSound("Player Walk");
+            FindObjectOfType<AudioManager>().StopSound("Player Run");
             walkingFootsteps = false;
+            runningFootsteps = false;
         }
 
         if (NoiseLevelManager.running == false && walkingFootsteps == false)
         {
             FindObjectOfType<AudioManager>().PlaySound("Player Walk");
             walkingFootsteps=true;
+        }
+        else if (NoiseLevelManager.running == true && runningFootsteps == false)
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Player Run");
+            runningFootsteps=true;
         }
         MovePlayer(move); // Run the MovePlayer function with the vector3 value move
         RunCheck(); // Checks the input for run
@@ -115,7 +123,7 @@ public class Fpsmovment : MonoBehaviour
         }
         if (Input.GetKey(m_sprint))
         {
-            if (Time.time - startTime >= 6)
+            if (Time.time - startTime >= 4)
             {
                 exhausted = true;
             }
@@ -128,6 +136,7 @@ public class Fpsmovment : MonoBehaviour
                 FindObjectOfType<AudioManager>().PlaySound("Player Exhausted");
             }
             NoiseLevelManager.running = false;
+            FindObjectOfType<AudioManager>().StopSound("Player Run");
             m_finalSpeed = m_movementSpeed;
             //soundVolume.SetActive(false);
         }
